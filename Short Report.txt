@@ -1,0 +1,110 @@
+﻿					REPORT
+PROBLEM STATEMENT
+	Develop a C library for the integers of arbitrary length.
+
+INTRODUCTION
+	An intal is a non-negative integer of arbitrary length stored as a NULL-terminated string of ASCII characters. It is represented as a
+	string of decimal digits stored in big-endian style.
+	In int data type, the number is stored as a series of digits whereas in intal, the number is stored as a set of ASCII characters. 
+	So any operation involving intal numbers have string like operations to get the desired results.
+	Also data types like int, long and double have fixed length whereas intal has arbitrary length that can be changed as per user’s wish. 
+	APPLICATIONS OF INTAL LIBRARY
+		Intal can be used in CERN and LIGO applications.
+		Split digit computations become easy with intal.   
+	ADVANTAGES OF INTAL LIBRARY
+		Intal library can help in parsing large numbers with high decimal precision.
+		It can represent Base128 number.
+		It can be used while computing numbers with high mathematical precision.
+
+APPROACH
+	Implementation of most functions are by using brute force methods as most of the functions are straight to implement and some 
+	functions have simpler arithmetic techniques like multiplication and subtraction.
+	Approach is to store the intal in a character array along with its length so that computations go hand in hand easily.
+	
+	ADDITION
+		Brute force method is used in this function. Last two integers in the array are added and stored in temporary variable and if the 
+	value of the temporary variable is greater than 9, a carry is added to the next set of numbers.
+	
+	COMPARE
+		Lengths of the respective strings (numbers) are compared and if same, then content at each index are compared and values are returned 
+	accordingly.
+	
+	DIFFERENCE
+		Intals are compared and smallest number is subtracted from the largest number and the signs are handled properly. Even here, 
+	brute force method is used. It works like same as addition but here borrow replaces carry (if difference < 0).
+	
+	MULTIPLY
+		Follows naïve multiplication with O(mn) complexity. Each digit from the second number is multiplied with the entire first number
+	and the resulting products are added shifting each result by one place.
+	
+	MODULUS
+		This uses the long division method to compute where the quotient isn’t stored and the result remainder is the one that is cached 
+	from each computation. 
+	
+	POWER
+		Follows a divide and conquer method for calculating the power in an iterative manner.
+	
+	GCD
+		Algorithm:
+		gcd (a,b)
+			if (a=0)   return b
+			else 	   return gcd(b mod a, a)
+	
+	FIBONACCI
+		F(0) = 0, F(1) = 1
+		F(n) = F(n-1) + F(n-2)
+	FACTORIAL
+		F(0) = 1, F(1) = 1
+  		F(n) = n*F(n-1)
+	
+
+	BINOMIAL COEFFICIENT 
+		Binomial coefficient using bottoms up approach using memorization where:
+		LOGIC:
+  		C(n,k) = C(n-1,k) + C(n-1,k-1)
+  		C(n,0) = 1
+  		C(n,1) = n
+  		We know that C(n,k) depends on C(n-1,k) and C(n-1,k-1)
+  		We compute C(1,0), C(1,1) first then C(2,0), C(2,1) and C(2,2) using
+  		C(1,0), C(1,1). We build up this until C(n, k)
+  		Given C(n + 1, x) only depends on C(n, y), we need O(n) extra space
+	
+	MAX
+		Uses linear traversal and intal_compare to compare each number with instantaneous highest value to find the absolute maximum
+
+	MIN
+		Uses linear traversal and intal_compare to compare each number with instantaneous lowest value to find the absolute minimum
+	
+	SEARCH
+		Compares the key with each element of array and uses intal_compare to find the position of the key in array.
+	
+	BINARY SEARCH
+		Compares the key with each element of array using divide and conquer
+	and uses intal_compare to find the position of the key in array.
+
+	SORT
+	Uses Quicksort (user defined) to sort the array in non-decreasing order.
+
+	COIN ROW PROBLEM
+		Uses a O(n) DP table to implement coin row problem using:
+		LOGIC:
+		CR(0) = 0
+		CR(1) = Coin[1]
+		CR(n) = MAX(CR(n - 1), Coin[n] + CR(n - 2));
+
+FUTURE IMPROVEMENTS
+	Intals can be extended to negative numbers as well (signed intal).
+	Intal pointers can be developed so that tracking intal numbers becomes easy rather than using character pointers to reference them. 
+	Splitting Intals into decimal and floating parts and developing further improvements in making computations easy.
+
+
+
+			
+
+
+
+
+
+
+
+	
